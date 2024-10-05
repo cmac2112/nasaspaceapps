@@ -3,8 +3,9 @@ import './landingPage.css'
 
 const landingPage = () => {
   return (
-    
+    <>
     <div>landingPage</div>
+    </>
   )
 }
 
