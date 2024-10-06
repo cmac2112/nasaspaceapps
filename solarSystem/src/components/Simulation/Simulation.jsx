@@ -7,19 +7,16 @@ import calculatePosition, { calculateOrbitPoints, createOrbitLine} from "./orbit
 import { getObjects, getSecondObjects } from "./objects";
 import Layout from "../Layout/Layout";
 import "./SpaceSimulator.css"
-import "./gui.css"
 import { GUI } from "dat.gui";
 
 const SpaceSimulation = () => {
   const canvasRef = useRef(null);
-  const raycaster = new THREE.Raycaster();
-  const mouse = new THREE.Vector2();
   const cameraRef = useRef();
-  const targetObjectRef = useRef(null);
-  const isCameraLockedRef = useRef(false);
-  let scene, renderer, controls, timeScale = 0.0001;
-  let time;
+  const orbitLinesRef = useRef([]);
+  let scene, renderer, controls;
+  let timeScale = 0.00001;
   const [dataReady, setDataReady] = useState(false);
+  const [showOrbitLines, setShowOrbitLines] = useState(true);
   let renderDistance = 5000;
   useEffect(() => {
     const fetchData = async () => {
@@ -38,9 +35,6 @@ const SpaceSimulation = () => {
     const canvas = canvasRef.current;
     renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
-
-    const selectedOffset = new THREE.Vector3(10, 25, 10); // Default offset from the object
-
     scene = new THREE.Scene();
     cameraRef.current = new THREE.PerspectiveCamera(
       75,
@@ -69,6 +63,24 @@ const SpaceSimulation = () => {
       });
     });
 
+    // Create orbit lines
+    const orbitLines = planetMeshes.map(({ planet }) => {
+      const orbitPoints = calculateOrbitPoints(planet.a, planet.e, planet.I, planet.longNode, planet.longPeri);
+      return createOrbitLine(orbitPoints);
+    });
+    console.log(orbitLines);
+    orbitLinesRef.current = orbitLines;
+    
+    if(showOrbitLines){
+      orbitLines.forEach(line => {
+        scene.add(line);
+      });
+    }else{
+      orbitLines.forEach(line => {
+        line.visible = false;
+      });
+    }
+    
     
 
     // FPS stats
@@ -81,17 +93,17 @@ const SpaceSimulation = () => {
     controls.maxDistance = 100000;
     const animate = () => {
       stats.update();
-      time = Date.now() * timeScale;
+      const now = Date.now() * timeScale;
 
       const scaledDistance = 1000; // Scale distance for better visibility
       const moonDistanceScale = 400; // better visibility, distances are not to
       // Update planet positions
       planetMeshes.forEach(({ planet, mesh, moonMeshes }) => {
-        const { x, y, z } = calculatePosition(planet, time);
+        const { x, y, z } = calculatePosition(planet, now);
         mesh.position.set(x * scaledDistance, y * scaledDistance, z * scaledDistance);
 
         moonMeshes.forEach(({ moon, moonMesh }) => {
-          const moonPosition = calculatePosition(moon, time);
+          const moonPosition = calculatePosition(moon, now);
           moonMesh.position.set(
             mesh.position.x + moonPosition.x * moonDistanceScale,
             mesh.position.y + moonPosition.y * moonDistanceScale,
@@ -123,11 +135,7 @@ const SpaceSimulation = () => {
     cameraFolder.add(cameraRef.current.position, 'z', -10000, 10000);
     cameraFolder.open();
 
-    const renderDistanceFolder = gui.addFolder('Render Distance');
-    renderDistanceFolder.domElement.querySelector('.title').style.fontSize = '12px';
-    renderDistanceFolder.add({ increaseDistance: () => setRenderDistance += 1000 }, 'increaseDistance').name('Increase Distance');
-    renderDistanceFolder.add({ decreaseDistance: () => setRenderDistance -= 1000 }, 'decreaseDistance').name('Decrease Distance');
-    renderDistanceFolder.open();
+    
 
     // Function to set the camera position
     const setCameraPosition = () => {
@@ -135,19 +143,33 @@ const SpaceSimulation = () => {
       cameraRef.current.lookAt(new THREE.Vector3(0, 0, 0)); // Adjust if needed
       controls.update(); // Update controls if using OrbitControls
     };
+    const DecreaseTimeScale = () => {
+      timeScale = timeScale - 0.00001;
+    }
+    const IncreaseTimeScale = () => {
+      timeScale = timeScale + 0.00001;
+    }
 
-    // Add button to GUI
     const actionsFolder = gui.addFolder('Actions');
-    actionsFolder.domElement.querySelector('.title').style.fontSize = '12px';
-    actionsFolder.add({ setCameraPosition }, 'setCameraPosition').name('Reset Camera');
-    actionsFolder.open();
+actionsFolder.domElement.querySelector('.title').style.fontSize = '12px';
+actionsFolder.add({ setCameraPosition }, 'setCameraPosition').name('Reset Camera');
+actionsFolder.add({ showOrbitLines }, 'showOrbitLines').name('Show Orbit Lines').onChange(value => {
+  setShowOrbitLines(value);
+  orbitLinesRef.current.forEach(line => {
+    line.visible = value;
+  });
+});
+actionsFolder.add({ IncreaseTimeScale }, 'IncreaseTimeScale', 0, 0.0001).name('Increase Time').onChange(value => {
+  IncreaseTimeScale();
+});
+actionsFolder.add({ DecreaseTimeScale }, 'DecreaseTimeScale', 0, 0.0001).name('Decrease Time').onChange(value => {
+  DecreaseTimeScale();
+});
 
-
-    window.addEventListener("resize", resizeCanvas);
-
+window.addEventListener("resize", resizeCanvas);
 
     animate();
-
+    
     return () => {
       window.removeEventListener("resize", resizeCanvas);
 
@@ -158,9 +180,13 @@ const SpaceSimulation = () => {
   return (
     <>
     <Layout >
+      {!dataReady ? (
+        <div className="loading">Loading...</div>
+      ):(
       <div className="canvas-container">
       <canvas className="simulation" id="webgl-canvas" ref={canvasRef}></canvas>
       </div>
+      )}
       </Layout>
     </>
   );

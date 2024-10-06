@@ -14,7 +14,12 @@ html, body{
     padding:0;
     overflow: hidden
 }
-/* styles.css */
-.dat-gui .title {
-    font-size: 12px; /* Adjust the font size as needed */
+.loading{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 50px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
 }

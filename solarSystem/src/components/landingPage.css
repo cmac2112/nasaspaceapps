@@ -4,6 +4,8 @@
     background-position: center;
     background-repeat: no-repeat;
 }
+
+
 .title{
     margin: 0;
     color: white;
@@ -13,9 +15,11 @@
 .begin-button{
     background-color: rgba(86, 89, 233, 0.44);
     color: white;
-    font-size: xx-large;
+    font-size: 60px;
     padding: 10px;
     border-radius: 20px;
+    position: absolute;
+    top: 100%;
 }
 .begin-button:hover{
     background-color: rgba(86, 89, 233, 0.8);

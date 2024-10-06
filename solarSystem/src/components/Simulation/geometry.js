@@ -38,7 +38,7 @@ export default async function sunGenerator() {
 const createTextSprite = (text) => {
   const canvas = document.createElement("canvas");
   const context = canvas.getContext("2d");
-  const fontSize = 100;
+  const fontSize = 80;
   context.font = `${fontSize}px Arial`;
 
   // Measure the text width
@@ -112,8 +112,8 @@ export const createPlanetMeshes = () => {
           const moonTexture = textureLoader.load(meteormap);
           const moonGeometry = new THREE.SphereGeometry(10, 10, 10);
           const moonMaterial = new THREE.MeshBasicMaterial({
-            map: moonTexture
-          })
+            map: moonTexture,
+          });
           const moonMesh = new THREE.Mesh(moonGeometry, moonMaterial);
           moonMesh.position.set(500, 0, 0); // Position the moon relative to Earth
           //simulation with moons is tough, they need to show but space is too large to show
@@ -141,7 +141,6 @@ export const createPlanetMeshes = () => {
         marsGroup.add(mesh);
         marsGroup.add(marsSprite);
 
-
         /*
         geometry = new THREE.IcosahedronGeometry(5, 8);
         const noise = new SimplexNoise();
@@ -165,7 +164,7 @@ export const createPlanetMeshes = () => {
         // Create moon meshes for Mars
         moonMeshes = (planet.moons || []).map((moon) => {
           const moonTexture = textureLoader.load(meteormap);
-          const moonGeometry = new THREE.IcosahedronGeometry(5.8)
+          const moonGeometry = new THREE.IcosahedronGeometry(5.8);
           const moonMaterial = new THREE.MeshStandardMaterial({
             map: moonTexture,
           });
@@ -173,8 +172,8 @@ export const createPlanetMeshes = () => {
           marsGroup.add(moonMesh);
 
           const moonSprite = createTextSprite(moon.name);
-  moonSprite.position.set(0, 10, 0); // Adjust position as needed
-  moonMesh.add(moonSprite);
+          moonSprite.position.set(0, 10, 0); // Adjust position as needed
+          moonMesh.add(moonSprite);
 
           return { moon, moonMesh };
         });
@@ -198,7 +197,7 @@ export const createPlanetMeshes = () => {
         mercuryGroup.add(mesh);
         mercuryGroup.add(mercurySprite);
 
-       moonMeshes = []
+        moonMeshes = [];
 
         return { planet, mesh: mercuryGroup, moonMeshes };
 
@@ -214,7 +213,6 @@ export const createPlanetMeshes = () => {
         const venusSprite = createTextSprite(planet.name);
         venusSprite.position.set(100, 0, 0); // Position above the planet
         venusSprite.scale.set(100, 50, 10);
-
 
         // Create atmosphere
         const venusAtmosphereGeometry = new THREE.SphereGeometry(25, 30, 30);
@@ -234,9 +232,9 @@ export const createPlanetMeshes = () => {
         const venusGroup = new THREE.Group();
         venusGroup.add(mesh);
         venusGroup.add(venusSprite);
-        venusGroup.add(venusAtmosphere)
+        venusGroup.add(venusAtmosphere);
 
-       moonMeshes = []
+        moonMeshes = [];
 
         return { planet, mesh: venusGroup, moonMeshes };
       case "Jupiter":
@@ -266,14 +264,12 @@ export const createPlanetMeshes = () => {
           const moonMesh = new THREE.Mesh(moonGeometry, moonMaterial);
           jupiterGroup.add(moonMesh);
 
-           // Create text sprite for each moon
-  const moonSprite = createTextSprite(moon.name);
-  moonSprite.position.set(0, 10, 0); // Adjust position as needed
-  moonMesh.add(moonSprite);
+          // Create text sprite for each moon
+          const moonSprite = createTextSprite(moon.name);
+          moonSprite.position.set(0, 10, 0); // Adjust position as needed
+          moonMesh.add(moonSprite);
 
-  return { moon, moonMesh };
-
- 
+          return { moon, moonMesh };
         });
 
         return { planet, mesh: jupiterGroup, moonMeshes };
@@ -294,7 +290,7 @@ export const createPlanetMeshes = () => {
         break;
       default:
         texture = textureLoader.load(meteormap);
-        geometry = new THREE.IcosahedronGeometry(5, 8);
+        geometry = new THREE.IcosahedronGeometry(8, 8);
         const noise = new SimplexNoise();
         const vertices = geometry.attributes.position.array;
 
@@ -311,21 +307,23 @@ export const createPlanetMeshes = () => {
 
         geometry.attributes.position.needsUpdate = true;
         material = new THREE.MeshBasicMaterial({ map: texture });
-        mesh = new THREE.Mesh(geometry, material)
+        mesh = new THREE.Mesh(geometry, material);
 
-        const mainSprite = createTextSprite(planet.name)
-        mainSprite.position.set(0,10,0);
-        mesh.add(mainSprite)
+        const mainSprite = createTextSprite(planet.name);
+        mainSprite.position.set(0, 30, 0);
+        mesh.add(mainSprite);
         moonMeshes = (planet.moons || []).map((moon) => {
           const moonTexture = new THREE.TextureLoader().load(meteormap);
           const moonGeometry = new THREE.SphereGeometry(10, 15, 15);
-          const moonMaterial = new THREE.MeshNormalMaterial({ map: moonTexture });
+          const moonMaterial = new THREE.MeshNormalMaterial({
+            map: moonTexture,
+          });
           const moonMesh = new THREE.Mesh(moonGeometry, moonMaterial);
-    
+
           return { moon, moonMesh };
         });
-        
-        return { planet, mesh, moonMeshes}
+
+        return { planet, mesh, moonMeshes };
     }
     mesh = new THREE.Mesh(geometry, material);
     mesh.rotation.x = Math.PI / 2;
