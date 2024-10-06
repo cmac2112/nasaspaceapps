@@ -1,12 +1,14 @@
 import React from 'react';
 import './AboutUs.css';
+import caden from "../../assets/caden.png"
+ 
 
 const Aboutus= () => {
     return (
         <div className="about-container">
             <h1>About Us</h1>
             <div className="logo-container">
-                <img src="path/to/your/logo.png" alt="Logo" />
+                <img src="logo.png" alt="Logo" />
             </div>
             <div className="video-container">
                 <video controls>
@@ -17,6 +19,9 @@ const Aboutus= () => {
             <div className="bio-container">
                 <div className="bio">
                     <h2>Caden McArthur</h2>
+                    
+                    <img src="caden.png" alt="caden" />
+
                     <p>Short biography for Name 1.</p>
                 </div>
                 <div className="bio">
