@@ -4,6 +4,11 @@ import Layout from './Layout/Layout'
 import Earth from './Earth/Earth'
 import { useNavigate } from "react-router-dom"
 const landingPage = () => {
+
+ return (
+  <div>test</div>
+ )
+
   const Navigate = useNavigate()
   return (
     <Layout>
@@ -18,6 +23,7 @@ const landingPage = () => {
       </div>
     </Layout>
   )
+
 }
 
 export default landingPage

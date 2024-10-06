@@ -1,0 +1,195 @@
+.keplerianparameteres{
+    margin: 0;
+    color: rgba(255, 255, 255, 0.973);
+    text-align: left;
+    font-size: 40px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+.parapraph1{
+    font-size: 1rem; /* Adjust font size as needed */
+    line-height: 1.5; /* Adjust line height for readability */
+    margin: 1rem 0; /* Adjust margins as needed */
+    padding-left: 1.5rem; /* Indent the list */
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.calculated{
+    margin: 0;
+    color: white;
+    text-align: left;
+    font-size: 40px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.quantities{
+        font-size: 1rem; 
+        line-height: 1.5; 
+        margin: 1rem 0; 
+        padding-left: 1.5rem; 
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+}
+.framework{
+    margin: 0;
+    color: white;
+    text-align: left;
+    font-size: 40px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+.orbitalelements{
+    font-size: 1rem; 
+    line-height: 1.5; 
+    margin: 1rem 0; 
+    padding-left: 1.5rem; 
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+.anomaly1{
+    margin: 0;
+    color: white;
+    text-align: left;
+    font-size: 40px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+.anomaly2{
+    font-size: 1rem; 
+    line-height: 1.5; 
+    margin: 1rem 0; 
+    padding-left: 1.5rem; 
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+
+}
+.radius1{
+    margin: 0;
+    color: white;
+    text-align: left;
+    font-size: 40px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+.radius2{
+    font-size: 20px; 
+    line-height: 1.5; 
+    margin: 1rem 0; 
+    padding-left: 1.5rem; 
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.heliocentric{
+    margin: 0;
+    color: white;
+    text-align: left;
+    font-size: 40px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+.helio{
+    font-size: 20px; 
+    line-height: 1.5; 
+    margin: 1rem 0; 
+    padding-left: 1.5rem; 
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.position{
+    margin: 0;
+    color: white;
+    text-align: left;
+    font-size: 40px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+.pos{
+    font-size: 20px; 
+    line-height: 1.5; 
+    margin: 1rem 0; 
+    padding-left: 1.5rem; 
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.equa{
+    margin: 0;
+    color: white;
+    text-align: left;
+    font-size: 40px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+
+}
+.equatorial{
+    font-size: 20px; 
+    line-height: 1.5; 
+    margin: 1rem 0; 
+    padding-left: 1.5rem; 
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.asteroids{
+    margin: 0;
+    color: white;
+    text-align: left;
+    font-size: 40px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+.ast{
+    font-size: 20px; 
+    line-height: 1.5; 
+    margin: 1rem 0; 
+    padding-left: 1.5rem; 
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.comets{
+    margin: 0;
+    color: white;
+    text-align: left;
+    font-size: 40px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+.comet{
+    font-size: 20px; 
+    line-height: 1.5; 
+    margin: 1rem 0; 
+    padding-left: 1.5rem; 
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.centered-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%; /* Adjust the width as needed */
+}
+.styled-image{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%; /* Adjust the width as needed */
+}
+.formed-image{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%; /* Adjust the width as needed */
+}
