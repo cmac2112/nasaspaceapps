@@ -1,0 +1,12 @@
+.header-container{
+    background-color: grey;
+    display: flex;
+}
+.list{
+    display: flex;
+    padding: 10px;
+}
+li{
+    list-style-type: none;
+    padding: 10px;
+}
