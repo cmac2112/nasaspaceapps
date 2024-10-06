@@ -1,13 +1,16 @@
+
 .title{
     font-size: 40px;
     font-family: Arial, Helvetica, sans-serif
 }
+
 .bg{
     background-image: url('../assets/stars.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
+
 .keplerianparameteres{
     margin: 0;
     color: rgba(255, 255, 255, 0.973);
@@ -25,3 +28,29 @@
         font-family: Arial, Helvetica, sans-serif;
 }
     
+
+.title{
+    margin: 0;
+    color: white;
+    font-size: 60px;
+    text-align: center;
+}
+.begin-button{
+    background-color: rgba(86, 89, 233, 0.44);
+    color: white;
+    font-size: xx-large;
+    padding: 10px;
+    border-radius: 20px;
+}
+.begin-button:hover{
+    background-color: rgba(86, 89, 233, 0.8);
+    cursor: pointer;
+}
+.earth-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+

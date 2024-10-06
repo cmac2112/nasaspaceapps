@@ -4,10 +4,85 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BC Orrery</title>
+    <title>Solar Eye</title>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <!-- Glsl does not like it when we use seperate files, this was a long process to get this working but this is a workaround 
+     for shaders-->
+    <script id="vertexshader" type="vertex">
+      varying vec2 vertexUV;
+            varying vec3 vertexNormal;
+            void main() {
+                vertexUV = uv;
+                vertexNormal = normalize(normalMatrix * normal);
+                gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+            }
+    
+  </script>
+
+  <script id="fragmentshader" type="fragment">
+    uniform sampler2D globeTexture;
+        varying vec2 vertexUV;
+        varying vec3 vertexNormal;
+        out vec4 fragColor;
+        void main() {
+            float intensity = 1.4 - dot(vertexNormal, vec3(0,0,1));
+            vec3 atmosphere = vec3(0.3, 0.6, 1) * pow(intensity, 3.0);
+            vec4 globeColor = texture2D(globeTexture, vertexUV);
+            fragColor = vec4(atmosphere + globeColor.xyz, globeColor.a);
+        }
+    
+  </script>
+  <script id="atmospherefrag" type="fragment">
+            varying vec3 vertexNormal;
+            void main() {
+                float intensity = pow(0.9 - dot(vertexNormal, vec3(0,0,1)), 2.0);
+                gl_FragColor = vec4(0.3, 0.6, 1, 1) * intensity;
+            }
+  </script>
+  <script id="atmospherevert" type="vertex">
+    varying vec3 vertexNormal;
+    void main(){
+      vertexNormal = normal;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    }
+  </script>
+  <script id="sunvert" type="vertex">
+    varying vec2 vertexUV;
+            varying vec3 vertexNormal;
+            void main() {
+                vertexUV = uv;
+                vertexNormal = normalize(normalMatrix * normal);
+                gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+            }
+  </script>
+  <script id="sunfrag" type="fragment">
+    uniform sampler2D globeTexture;
+        varying vec2 vertexUV;
+        varying vec3 vertexNormal;
+        out vec4 fragColor;
+        void main() {
+            float intensity = 1.4 - dot(vertexNormal, vec3(0,0,1));
+            vec3 atmosphere = vec3(0.8, 0.6, 1) * pow(intensity, 3.0);
+            vec4 globeColor = texture2D(globeTexture, vertexUV);
+            fragColor = vec4(atmosphere + globeColor.xyz, globeColor.a);
+        }
+    </script>
+    <script id="venusvert" type="vertex">
+      varying vec3 vertexNormal;
+    void main(){
+      vertexNormal = normal;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    }
+    </script>
+    <script id="venusfrag" type="fragment">
+      varying vec3 vertexNormal;
+            void main() {
+                float intensity = pow(0.9 - dot(vertexNormal, vec3(0,0,1)), 2.0);
+                gl_FragColor = vec4(1.0, 0.9, 0.4, 0.99) * intensity;
+            }
+    </script>
   </body>
 </html>
