@@ -212,6 +212,25 @@ export const getObjects = async () => {
 } catch (error) {
   console.error('Error fetching or processing data:', error);
 }
+try{
+  let response = await fetch("https://ssd-api.jpl.nasa.gov/sbdb_query.api?fields=full_name,epoch,e,a,q,i,om,w&sb-class=IEO")
+  let data = await response.json()
+  const mappedData = data.map(item => ({
+    name: item.object_name || item.object,
+    a: parseFloat(item.q_au_1) / (1 - parseFloat(item.e)), // Semi-major axis
+    e: parseFloat(item.e),
+    I: parseFloat(item.i_deg),
+    L: parseFloat(item.tp_tdb), // Mean anomaly at epoch (tp_tdb)
+    longPeri: parseFloat(item.w_deg),
+    longNode: parseFloat(item.node_deg)
+  }));
+
+  // Append the mapped data to the planets array
+  planets.push(...mappedData);
+
+}catch(error){
+  console.log(error);
+}
 
 }
 
@@ -220,6 +239,7 @@ export const getSecondObjects = async () => {
     // Map the data
 
     const filteredData = neoData.filter(item => item.orbit);
+  
     console.log('filtered data', filteredData)
     const mappedSatData = filteredData.map(item => ({
       name: item.sat.iau_name,

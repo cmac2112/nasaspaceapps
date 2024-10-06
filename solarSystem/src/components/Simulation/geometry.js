@@ -71,7 +71,7 @@ export const createPlanetMeshes = () => {
     switch (planet.name) {
       case "Earth":
         texture = textureLoader.load(ear);
-        geometry = new THREE.SphereGeometry(25, 30, 30);
+        geometry = new THREE.SphereGeometry(25, 25, 25);
         material = new THREE.ShaderMaterial({
           vertexShader: document.getElementById("vertexshader").textContent,
           fragmentShader: document.getElementById("fragmentshader").textContent,
@@ -84,7 +84,7 @@ export const createPlanetMeshes = () => {
         mesh.rotation.x = Math.PI / 2; // Tilt the object down 90 degrees
 
         // Create atmosphere
-        const atmosphereGeometry = new THREE.SphereGeometry(25, 50, 50);
+        const atmosphereGeometry = new THREE.SphereGeometry(25, 20, 20);
         const atmosphereMaterial = new THREE.ShaderMaterial({
           vertexShader: document.getElementById("atmospherevert").textContent,
           fragmentShader: document.getElementById("atmospherefrag").textContent,
@@ -110,10 +110,10 @@ export const createPlanetMeshes = () => {
         // Create moon meshes for Earth
         moonMeshes = (planet.moons || []).map((moon) => {
           const moonTexture = textureLoader.load(meteormap);
-          const moonGeometry = new THREE.SphereGeometry(10, 15, 15);
-          const moonMaterial = new THREE.MeshNormalMaterial({
-            map: moonTexture,
-          });
+          const moonGeometry = new THREE.SphereGeometry(10, 10, 10);
+          const moonMaterial = new THREE.MeshBasicMaterial({
+            map: moonTexture
+          })
           const moonMesh = new THREE.Mesh(moonGeometry, moonMaterial);
           moonMesh.position.set(500, 0, 0); // Position the moon relative to Earth
           //simulation with moons is tough, they need to show but space is too large to show
@@ -127,7 +127,7 @@ export const createPlanetMeshes = () => {
 
       case "Mars":
         texture = textureLoader.load(mars);
-        geometry = new THREE.SphereGeometry(15, 30, 30);
+        geometry = new THREE.SphereGeometry(15, 22, 22);
         material = new THREE.MeshBasicMaterial({ map: texture });
         mesh = new THREE.Mesh(geometry, material);
         mesh.rotation.x = Math.PI / 2;
@@ -141,11 +141,32 @@ export const createPlanetMeshes = () => {
         marsGroup.add(mesh);
         marsGroup.add(marsSprite);
 
+
+        /*
+        geometry = new THREE.IcosahedronGeometry(5, 8);
+        const noise = new SimplexNoise();
+        const vertices = geometry.attributes.position.array;
+
+        //add random noise to make it look like a comet or meteor
+        for (let i = 0; i < vertices.length; i += 3) {
+          const x = vertices[i];
+          const y = vertices[i + 1];
+          const z = vertices[i + 2];
+          const offset = noise.noise3d(x * 0.1, y * 0.1, z * 0.1);
+          vertices[i] += offset * 2;
+          vertices[i + 1] += offset * 2;
+          vertices[i + 2] += offset * 2;
+        }
+
+        geometry.attributes.position.needsUpdate = true;
+        material = new THREE.MeshBasicMaterial({ map: texture });
+    }
+        */
         // Create moon meshes for Mars
         moonMeshes = (planet.moons || []).map((moon) => {
           const moonTexture = textureLoader.load(meteormap);
-          const moonGeometry = new THREE.SphereGeometry(10, 15, 15);
-          const moonMaterial = new THREE.MeshNormalMaterial({
+          const moonGeometry = new THREE.IcosahedronGeometry(5.8)
+          const moonMaterial = new THREE.MeshStandardMaterial({
             map: moonTexture,
           });
           const moonMesh = new THREE.Mesh(moonGeometry, moonMaterial);
@@ -290,6 +311,14 @@ export const createPlanetMeshes = () => {
 
         geometry.attributes.position.needsUpdate = true;
         material = new THREE.MeshBasicMaterial({ map: texture });
+        mesh = new THREE.Mesh(geometry, material)
+
+        const mainSprite = createTextSprite(planet.name)
+        mainSprite.position.set(0,10,0);
+        mesh.add(mainSprite)
+        
+        
+        
     }
     mesh = new THREE.Mesh(geometry, material);
     mesh.rotation.x = Math.PI / 2;
