@@ -1,6 +1,6 @@
 import React from 'react'
 import './Header.css'
-import aboutus from '../aboutus/aboutus'
+
 
 const Header = () => {
     // header component, should hold links to all the pages here

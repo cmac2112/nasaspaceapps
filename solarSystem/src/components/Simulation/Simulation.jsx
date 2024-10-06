@@ -3,7 +3,7 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import Stats from "three/examples/jsm/libs/stats.module";
 import sunGenerator,{ createPlanetMeshes } from "./geometry";
-import calculatePosition from "./orbitalCalculation";
+import calculatePosition, { calculateOrbitPoints, createOrbitLine} from "./orbitalCalculation";
 import { getObjects, getSecondObjects } from "./objects";
 import Layout from "../Layout/Layout";
 import "./SpaceSimulator.css"
@@ -19,8 +19,8 @@ const SpaceSimulation = () => {
   const isCameraLockedRef = useRef(false);
   let scene, renderer, controls, timeScale = 0.0001;
   let time;
-
   const [dataReady, setDataReady] = useState(false);
+  let renderDistance = 5000;
   useEffect(() => {
     const fetchData = async () => {
       await getObjects();
@@ -46,7 +46,7 @@ const SpaceSimulation = () => {
       75,
       window.innerWidth / window.innerHeight,
       1,
-      3000
+      renderDistance
     );
     cameraRef.current.position.set(0, 0, 2000); // Initialize camera position
 
@@ -68,6 +68,8 @@ const SpaceSimulation = () => {
         scene.add(moonMesh);
       });
     });
+
+    
 
     // FPS stats
     const stats = Stats();
@@ -98,21 +100,11 @@ const SpaceSimulation = () => {
         });
       });
 
-      // Lock camera to selected object if there is one
-      if (isCameraLockedRef.current && targetObjectRef.current) {
-        const targetPosition = targetObjectRef.current.position.clone();
-        cameraRef.current.position.lerp(
-          targetPosition.clone().add(selectedOffset),
-          0.1
-        ); // Smooth transition
-        cameraRef.current.lookAt(targetPosition);
-        controls.target.copy(targetPosition);
-        controls.update();
-      }
-
       renderer.render(scene, cameraRef.current);
       requestAnimationFrame(animate);
     };
+
+
 
     // Resize canvas on window resize
     const resizeCanvas = () => {
@@ -121,45 +113,21 @@ const SpaceSimulation = () => {
       cameraRef.current.updateProjectionMatrix();
     };
 
-    const onMouseClick = (event) => {
-      mouse.x = (event.clientX / canvasRef.current.clientWidth) * 2 - 1;
-      mouse.y = -(event.clientY / canvasRef.current.clientHeight) * 2 + 1;
-
-      raycaster.setFromCamera(mouse, cameraRef.current);
-      const intersects = raycaster.intersectObjects(scene.children, true);
-
-      if (intersects.length > 0) {
-        const target = intersects[0].object; // Set the clicked object as target
-        console.log("Selected object:", target);
-        targetObjectRef.current = target;
-        isCameraLockedRef.current = true;
-
-        // Move camera to the selected object initially
-        cameraRef.current.position.set(
-          target.position.x + 25,
-          target.position.y + 25,
-          target.position.z + 200
-        );
-        cameraRef.current.lookAt(target.position);
-        controls.target.copy(target.position);
-        controls.update();
-      }
-    };
-
 
     //gui intialization
     const gui = new GUI();
     const cameraFolder = gui.addFolder('Camera');
+    cameraFolder.domElement.querySelector('.title').style.fontSize = '12px';
     cameraFolder.add(cameraRef.current.position, 'x', -10000, 10000);
     cameraFolder.add(cameraRef.current.position, 'y', -10000, 10000);
     cameraFolder.add(cameraRef.current.position, 'z', -10000, 10000);
     cameraFolder.open();
 
-    const lightFolder = gui.addFolder('Light');
-    lightFolder.add(spotLight.position, 'x', -1000, 1000);
-    lightFolder.add(spotLight.position, 'y', -1000, 1000);
-    lightFolder.add(spotLight.position, 'z', -1000, 1000);
-    lightFolder.open();
+    const renderDistanceFolder = gui.addFolder('Render Distance');
+    renderDistanceFolder.domElement.querySelector('.title').style.fontSize = '12px';
+    renderDistanceFolder.add({ increaseDistance: () => setRenderDistance += 1000 }, 'increaseDistance').name('Increase Distance');
+    renderDistanceFolder.add({ decreaseDistance: () => setRenderDistance -= 1000 }, 'decreaseDistance').name('Decrease Distance');
+    renderDistanceFolder.open();
 
     // Function to set the camera position
     const setCameraPosition = () => {
@@ -170,51 +138,23 @@ const SpaceSimulation = () => {
 
     // Add button to GUI
     const actionsFolder = gui.addFolder('Actions');
+    actionsFolder.domElement.querySelector('.title').style.fontSize = '12px';
     actionsFolder.add({ setCameraPosition }, 'setCameraPosition').name('Reset Camera');
     actionsFolder.open();
 
-    const onMouseMove = (event) => {
-      mouse.x = (event.clientX / canvasRef.current.clientWidth) * 2 - 1;
-      mouse.y = -(event.clientY / canvasRef.current.clientHeight) * 2 + 1;
 
-      raycaster.setFromCamera(mouse, cameraRef.current);
-      const intersects = raycaster.intersectObjects(scene.children);
-      if (intersects.length > 0) {
-        document.body.style.cursor = "pointer";
-      }
-    };
-    const onKeyDown = (event) => {
-      if (event.key === "Escape") {
-        isCameraLockedRef.current = false; // Unlock the camera
-        targetObjectRef.current = null; // Clear target object
-      }
-    };
-
-    window.addEventListener("mousemove", onMouseMove);
-    window.addEventListener("click", onMouseClick);
     window.addEventListener("resize", resizeCanvas);
-    window.addEventListener("keydown", onKeyDown); // Add keydown event listener
+
 
     animate();
 
     return () => {
-      window.removeEventListener("mousemove", onMouseMove);
-      window.removeEventListener("click", onMouseClick);
       window.removeEventListener("resize", resizeCanvas);
-      window.removeEventListener("keydown", onKeyDown); // Clean up keydown listener
+
       document.body.removeChild(stats.dom);
       gui.destroy()
     };
   }, [dataReady]); // Ensure empty dependency array to run only once
-  const increaseTime = (time) => {
-    timeScale -= 0.0001;
-  };
-  const decreaseTime = (time) => {
-    timeScale += 0.0001
-  };
-  const logNumberofPlanets = () => {
-    console.log('Number of planets:', scene.children.length);
-  }
   return (
     <>
     <Layout >

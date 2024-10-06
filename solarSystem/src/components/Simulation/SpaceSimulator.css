@@ -14,3 +14,7 @@ html, body{
     padding:0;
     overflow: hidden
 }
+/* styles.css */
+.dat-gui .title {
+    font-size: 12px; /* Adjust the font size as needed */
+}
