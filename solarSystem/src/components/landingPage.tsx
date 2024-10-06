@@ -10,7 +10,8 @@ const landingPage = () => {
     <Layout>
       <div className='container'>
       <div className="bg">
-      <h1 className="title">Discover Near-Earth Objects Explore our Solar System!</h1>
+      <h1 className="title">Discover Near-Earth Objects</h1>
+      <h1 className="title">Explore the Solar System</h1>
       <div className="earth-container">
         <Earth />
         <button onClick={() => Navigate('/simulation')} className="begin-button">Begin</button>
