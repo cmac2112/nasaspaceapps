@@ -21,7 +21,9 @@ const Aboutus= () => {
                 </div>
                 <div className="bio">
                     <h2>Meriem Dhouibi</h2>
-                    <p>Short biography for Name 2.</p>
+                    <p>Freshman Math and Physics major at Bethel College from Tunis, Tunisia.</p>
+                    <p>With a loud passion for astrophysics, the quest is ever afoot toward a bright future in aerospace engineering for Meriem. Her fascination with Astronomy drives her to work with Caden to run the Bethel College Observatory. 
+Beyond that, Meriem is a violinist, finding solace and inspiration in the harmonious world of music. The delicate balance between the rigors of science and the artistry of music serves as a testament to her versatility and dedication</p>
                 </div>
             </div>
         </div>
