@@ -2,3 +2,12 @@
     font-size: 40px;
     font-family: Arial, Helvetica, sans-serif
 }
+.bg{
+    background-image: url('../assets/stars.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.test{
+    color: white;
+}
