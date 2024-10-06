@@ -1,14 +1,13 @@
-import './App.css'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import landingPage from './components/landingPage'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LandingPage from './components/landingPage'
+import "./App.css";
 
 function App() {
-  
-
   return (
     <Router>
-      <Route path="*" component={NotFound} />
-      <Route path="/" component={landingPage} />
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+      </Routes>
     </Router>
   )
 }
