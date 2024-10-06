@@ -66,3 +66,34 @@ export default function calculatePosition (body, time){
   
   return { x, y, z };
 }
+
+export function calculateOrbitPoints(a, e, IVal, longNode, longPeri, segments = 64) {
+  const points = [];
+  for (let i = 0; i <= segments; i++) {
+    const E = (i / segments) * 360; // Eccentric anomaly in degrees
+    const v = 2 * Math.atan(Math.sqrt((1 + e) / (1 - e)) * Math.tan(E * Math.PI / 360)) * 180 / Math.PI; // True anomaly in degrees
+
+    const r = a * (1 - e * Math.cos(E * Math.PI / 180));
+    const xOrb = r * Math.cos(v * Math.PI / 180);
+    const yOrb = r * Math.sin(v * Math.PI / 180);
+
+    const cosI = Math.cos(IVal * Math.PI / 180);
+    const sinI = Math.sin(IVal * Math.PI / 180);
+    const cosNode = Math.cos(longNode * Math.PI / 180);
+    const sinNode = Math.sin(longNode * Math.PI / 180);
+    const cosPeri = Math.cos((longPeri - longNode) * Math.PI / 180);
+    const sinPeri = Math.sin((longPeri - longNode) * Math.PI / 180);
+
+    const x = (cosNode * cosPeri - sinNode * sinPeri * cosI) * xOrb + (-cosNode * sinPeri - sinNode * cosPeri * cosI) * yOrb;
+    const y = (sinNode * cosPeri + cosNode * sinPeri * cosI) * xOrb + (-sinNode * sinPeri + cosNode * cosPeri * cosI) * yOrb;
+    const z = (sinPeri * sinI) * xOrb + (cosPeri * sinI) * yOrb;
+
+    points.push(new THREE.Vector3(x, y, z));
+  }
+  return points;
+}
+export function createOrbitLine(points) {
+  const geometry = new THREE.BufferGeometry().setFromPoints(points);
+  const material = new THREE.LineBasicMaterial({ color: 0xffffff });
+  return new THREE.Line(geometry, material);
+}
