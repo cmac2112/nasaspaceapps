@@ -3,10 +3,10 @@ import LandingPage from './components/landingPage'
 import "./App.css";
 
 import InfoPage from "./components/InfoPage/InfoPage";
-
 import Earth from "./components/Earth/Earth";
 import SpaceSimulation from "./components/Simulation/Simulation";
-import Contact from "./components/Contact/contact";
+import AboutUs from "./components/AboutUs/AboutUs";
+
 
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
 
         <Route path="/earth" element={<Earth />} />
         <Route path="/simulation" element={<SpaceSimulation />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/aboutus" element={<AboutUs />} />
 
       </Routes>
     </Router>

@@ -1,5 +1,6 @@
 import React from 'react'
 import './Header.css'
+import aboutus from '../aboutus/aboutus'
 
 const Header = () => {
     // header component, should hold links to all the pages here
@@ -12,7 +13,7 @@ const Header = () => {
             <li><a href="/simulation">Simulation</a></li>
             <li><a href="/about">How it Works</a></li>
             <li><a href="/info">Info</a></li>
-            <li><a href="/contact">Contact</a></li>
+            <li><a href="/aboutus">About Us</a></li>
             </ul>
         </nav>
     </div>
