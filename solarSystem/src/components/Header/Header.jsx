@@ -5,14 +5,14 @@ const Header = () => {
     // header component, should hold links to all the pages here
   return (
     <div className="header-container">
-        <h1>Near Earth Object Orrery</h1>
+        <h1 className="header-title">Near Earth Object Orrery</h1>
         <nav className="navbar">
             <ul className="list">
-            <li><a href="/">Home</a></li>
-            <li><a href="/simulation">Simulation</a></li>
-            <li><a href="/about">How it Works</a></li>
-            <li><a href="/info">Info</a></li>
-            <li><a href="/contact">Contact</a></li>
+            <li className='header-li'><a href="/">Home</a></li>
+            <li className='header-li'><a href="/simulation">Simulation</a></li>
+            <li className='header-li'><a href="/about">How it Works</a></li>
+            <li className='header-li'><a href="/info">Info</a></li>
+            <li className='header-li'><a href="/contact">Contact</a></li>
             </ul>
         </nav>
     </div>
