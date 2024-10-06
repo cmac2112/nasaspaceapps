@@ -8,7 +8,20 @@
     background-position: center;
     background-repeat: no-repeat;
 }
-.test{
+.keplerianparameteres{
     margin: 0;
-    color: white;
+    color: rgba(255, 255, 255, 0.973);
+    text-align: center;
+    font-size: 3rem;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
 }
+.parapraph1{
+        font-size: 1rem; /* Adjust font size as needed */
+        line-height: 1.5; /* Adjust line height for readability */
+        margin: 1rem 0; /* Adjust margins as needed */
+        padding-left: 1.5rem; /* Indent the list */
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+}
+    
