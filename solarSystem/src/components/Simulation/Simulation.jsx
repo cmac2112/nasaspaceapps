@@ -46,7 +46,7 @@ const SpaceSimulation = () => {
       75,
       window.innerWidth / window.innerHeight,
       1,
-      15000
+      3000
     );
     cameraRef.current.position.set(0, 0, 7000); // Initialize camera position
 
