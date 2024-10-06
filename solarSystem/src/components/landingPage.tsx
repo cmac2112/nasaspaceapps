@@ -14,7 +14,7 @@ const landingPage = () => {
       <h1 className="title">Explore the Solar System</h1>
       <div className="earth-container">
         <Earth />
-        <button onClick={() => Navigate('/simulation')} className="begin-button">Begin</button>
+        <button onClick={() => Navigate('/solareyes/simulation')} className="begin-button">Begin</button>
         </div>
       </div>
       </div>

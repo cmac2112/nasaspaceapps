@@ -11,23 +11,6 @@
     background-repeat: no-repeat;
 }
 
-.keplerianparameteres{
-    margin: 0;
-    color: rgba(255, 255, 255, 0.973);
-    text-align: center;
-    font-size: 3rem;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-}
-.parapraph1{
-        font-size: 1rem; /* Adjust font size as needed */
-        line-height: 1.5; /* Adjust line height for readability */
-        margin: 1rem 0; /* Adjust margins as needed */
-        padding-left: 1.5rem; /* Indent the list */
-        color: white;
-        font-family: Arial, Helvetica, sans-serif;
-}
-    
 
 .title{
     margin: 0;
@@ -38,9 +21,11 @@
 .begin-button{
     background-color: rgba(86, 89, 233, 0.44);
     color: white;
-    font-size: xx-large;
+    font-size: 60px;
     padding: 10px;
     border-radius: 20px;
+    position: absolute;
+    top: 100%;
 }
 .begin-button:hover{
     background-color: rgba(86, 89, 233, 0.8);

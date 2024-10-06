@@ -1,5 +1,4 @@
-
-
+import * as THREE from "three"
 const calculateOrbitalPeriod = (a) => {
     return Math.sqrt(a ** 3); // Orbital period in Earth years based on kepler's third law
   };
@@ -25,6 +24,8 @@ export default function calculatePosition (body, time){
   Combining Positions:
   
   The position of the moon relative to the central star is obtained by adding the position vectors of the parent body and the moon.*/
+
+  
   const orbitalPeriod = calculateOrbitalPeriod(aVal);
   
   const adjustedTime = time / orbitalPeriod;
@@ -69,6 +70,7 @@ export default function calculatePosition (body, time){
 
 export function calculateOrbitPoints(a, e, IVal, longNode, longPeri, segments = 64) {
   const points = [];
+  const scaledDistance = 1000;
   for (let i = 0; i <= segments; i++) {
     const E = (i / segments) * 360; // Eccentric anomaly in degrees
     const v = 2 * Math.atan(Math.sqrt((1 + e) / (1 - e)) * Math.tan(E * Math.PI / 360)) * 180 / Math.PI; // True anomaly in degrees
@@ -88,12 +90,15 @@ export function calculateOrbitPoints(a, e, IVal, longNode, longPeri, segments = 
     const y = (sinNode * cosPeri + cosNode * sinPeri * cosI) * xOrb + (-sinNode * sinPeri + cosNode * cosPeri * cosI) * yOrb;
     const z = (sinPeri * sinI) * xOrb + (cosPeri * sinI) * yOrb;
 
-    points.push(new THREE.Vector3(x, y, z));
+    points.push(new THREE.Vector3(x * scaledDistance, y * scaledDistance, z * scaledDistance));
   }
   return points;
 }
 export function createOrbitLine(points) {
   const geometry = new THREE.BufferGeometry().setFromPoints(points);
-  const material = new THREE.LineBasicMaterial({ color: 0xffffff });
+  const material = new THREE.LineBasicMaterial({ color: 0xffffff,
+    transparent: true,
+    opacity: 0.1
+   });
   return new THREE.Line(geometry, material);
 }

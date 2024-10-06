@@ -84,5 +84,22 @@
                 gl_FragColor = vec4(1.0, 0.9, 0.4, 0.99) * intensity;
             }
     </script>
+    <script id="skyVertexShader" type="vertex">
+      varying vec3 vWorldPosition;
+      void main() {
+        vec4 worldPosition = modelMatrix * vec4(position, 1.0);
+        vWorldPosition = worldPosition.xyz;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+      }
+    </script>
+    <script id="skyFragmentShader" type="fragment">
+      uniform vec3 topColor;
+      uniform vec3 bottomColor;
+      varying vec3 vWorldPosition;
+      void main() {
+        float h = normalize(vWorldPosition).y;
+        gl_FragColor = vec4(mix(bottomColor, topColor, max(h, 0.0)), 1.0);
+      }
+      </script>
   </body>
 </html>
