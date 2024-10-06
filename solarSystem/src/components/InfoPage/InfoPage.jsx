@@ -19,12 +19,12 @@ const InfoPage = () => {
           <div className="bg">
             <p className="keplerianparameteres">Keplerian Parameteres</p>
             <ol className="parapraph1">
-        <li>1. Semi-major axis (a): Defines the size of the conic.</li>
-        <li>2. Eccentricity (e): Defines the shape of the conic.</li>
-        <li>3. Inclination (i): The angle between the reference frame and the orbital plane.</li>
-        <li>4. Longitude of the ascending node (Ω): The pin.</li>
-        <li>5. Argument of periapsis (ω): The twist.</li>
-        <li>6. Mean anomaly at epoch (v): The angle.</li>
+        <li> <i>1. Semi-major axis (a) </i>: Defines the size of the conic.</li>
+        <li> <i>2. Eccentricity (e) </i>: Defines the shape of the conic.</li>
+        <li> <i> 3. Inclination (i) </i>: The angle between the reference frame and the orbital plane.</li>
+        <li> <i>4. Longitude of the ascending node (Ω) </i>: The pin.</li>
+        <li> <i>5. Argument of periapsis (ω) </i>: The twist.</li>
+        <li> <i>6. Mean anomaly at epoch (v) </i>: The angle.</li>
     </ol>
 
     <p className="calculated">Calculated quantities</p>
@@ -53,10 +53,10 @@ const InfoPage = () => {
 
 <p className="radius1"> Finding the radius vector of the planet </p>
 <ul className="radius2">
-        <strong>The distance from the planet to the focus of the ellipse is given by a simple formula based on the geometry of the ellipse;
+        <li>The distance from the planet to the focus of the ellipse is given by a simple formula based on the geometry of the ellipse;
 
-</strong>     
-<strong> r = a * (1 - e^2) / [1 + e * cos(v)] </strong>
+</li>     
+<strong> <i> r = a * (1 - e^2) / [1 + e * cos(v)]  </i></strong>
 
 </ul>
             <p className="framework">Frameworks & Coordinates</p>
@@ -75,7 +75,7 @@ const InfoPage = () => {
 • The finite speed of light.
 </li>
             </ul>
-            <img src={kep} alt="Description" class="styled-image" />
+            <img src={kep} alt="Description" class="formed-image" />
 
             <p className="heliocentric"> Heliocentric coordinates of the planet</p>
             <ol className="helio">
@@ -108,7 +108,7 @@ const InfoPage = () => {
                 <img src={kep7} alt="Description" class="styled-image" />
 
             </ol>
-            <p className="comets"> Position of comets </p>
+            <p className="comets"> Position of <del>asteroids</del> <ins>comets</ins> </p>
             <ol className="comet">
                 <li>For comets with elliptical orbits, the mean anomaly (M) is typically not provided. Instead, the time of perihelion (T) is given. At perihelion, M is zero. To calculate M for any other time, follow these steps:</li>
             <li> 1. Compute the “day number” (d) for the time of perihelion (T), which we’ll call dT.
@@ -117,9 +117,10 @@ const InfoPage = () => {
 </li>
 <li>Then, calculate the mean anomaly (M) using the formula: </li>
 <img src={kep8} alt="Description" class="styled-image" />
-<li>Additionally, the semi-major axis (a) is often not provided. Instead, the perihelion distance (q) is given. You can compute a from q and the eccentricity (e) using the formula:</li>
-<li>a = q / (1.0 - e)</li>
-<li>Then proceed as with an asteroid</li>
+<li>Additionally, the semi-major axis (a) is often not provided. Instead, the perihelion distance (q) is given. You can compute a from q and the <i>eccentricity (e)</i> using the formula:</li>
+<i>a = q / (1.0 - e)</i> <li>
+<b>Then proceed as with an asteroid.</b>
+</li>
 </ol>
           </div>
         </Layout>
