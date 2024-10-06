@@ -17,7 +17,7 @@ const SpaceSimulation = () => {
   const cameraRef = useRef();
   const targetObjectRef = useRef(null);
   const isCameraLockedRef = useRef(false);
-  let scene, renderer, controls, timeScale = 0.000001;
+  let scene, renderer, controls, timeScale = 0.0001;
   let time;
 
   const [dataReady, setDataReady] = useState(false);
@@ -48,7 +48,7 @@ const SpaceSimulation = () => {
       1,
       3000
     );
-    cameraRef.current.position.set(0, 0, 7000); // Initialize camera position
+    cameraRef.current.position.set(0, 0, 2000); // Initialize camera position
 
     const spotLight = new THREE.SpotLight(0xffffff);
     spotLight.position.set(0, 64, 32);
