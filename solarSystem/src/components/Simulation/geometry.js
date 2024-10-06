@@ -316,9 +316,16 @@ export const createPlanetMeshes = () => {
         const mainSprite = createTextSprite(planet.name)
         mainSprite.position.set(0,10,0);
         mesh.add(mainSprite)
+        moonMeshes = (planet.moons || []).map((moon) => {
+          const moonTexture = new THREE.TextureLoader().load(meteormap);
+          const moonGeometry = new THREE.SphereGeometry(10, 15, 15);
+          const moonMaterial = new THREE.MeshNormalMaterial({ map: moonTexture });
+          const moonMesh = new THREE.Mesh(moonGeometry, moonMaterial);
+    
+          return { moon, moonMesh };
+        });
         
-        
-        
+        return { planet, mesh, moonMeshes}
     }
     mesh = new THREE.Mesh(geometry, material);
     mesh.rotation.x = Math.PI / 2;

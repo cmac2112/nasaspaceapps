@@ -1,4 +1,5 @@
 import neoData from "../../assets/neo.json"
+import neaData from "../../assets/nea.json"
 // Keplerian elements for each planet
 
 /*
@@ -212,27 +213,9 @@ export const getObjects = async () => {
 } catch (error) {
   console.error('Error fetching or processing data:', error);
 }
-try{
-  let response = await fetch("https://ssd-api.jpl.nasa.gov/sbdb_query.api?fields=full_name,epoch,e,a,q,i,om,w&sb-class=IEO")
-  let data = await response.json()
-  const mappedData = data.map(item => ({
-    name: item.object_name || item.object,
-    a: parseFloat(item.q_au_1) / (1 - parseFloat(item.e)), // Semi-major axis
-    e: parseFloat(item.e),
-    I: parseFloat(item.i_deg),
-    L: parseFloat(item.tp_tdb), // Mean anomaly at epoch (tp_tdb)
-    longPeri: parseFloat(item.w_deg),
-    longNode: parseFloat(item.node_deg)
-  }));
-
-  // Append the mapped data to the planets array
-  planets.push(...mappedData);
-
-}catch(error){
-  console.log(error);
 }
 
-}
+
 
 export const getSecondObjects = async () => {
   try {
@@ -249,11 +232,24 @@ export const getSecondObjects = async () => {
       L: parseFloat(item.orbit.tp), // Mean anomaly at epoch (tp)
       longPeri: parseFloat(item.orbit.w), // Longitude of perihelion, default to 0 if null
       longNode: parseFloat(item.orbit.om) // Longitude of ascending node
-    }));
+    }));     
+    
+    const { fields, data } = neaData
+    const mappedNeaData = data.map(item =>({
+      name: item[0],
+      a: parseFloat(item[3]) || 0, // Semi-major axis
+      e: parseFloat(item[2]) || 0, // Eccentricity, default to 0 if null
+      I: parseFloat(item[5]) || 0, // Inclination
+      L: parseFloat(item[1]) || 0, // Mean anomaly at epoch (tp)
+      longPeri: parseFloat(item[7]) || 0, // Longitude of perihelion, default to 0 if null
+      longNode: parseFloat(item[6]) || 0 
+    }))
 
     //filter out all null a values and delete the items
     // Append the mapped data to the planets array
     planets.push(...mappedSatData);
+    console.log('nea data', mappedNeaData)
+    planets.push(...mappedNeaData)
 
     console.log('Updated planets array 2:', planets);
   } catch (error) {
