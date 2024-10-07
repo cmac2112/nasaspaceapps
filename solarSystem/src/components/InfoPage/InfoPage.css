@@ -1,231 +1,225 @@
-.keplerianparameteres{
-    color: rgba(255, 255, 255, 0.973);
-    text-align: center;
-    font-size: 40px;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+.keplerianparameteres {
+  color: rgba(255, 255, 255, 0.973);
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
 }
-.parapraph1{
-    font-size: 1rem; /* Adjust font size as needed */
-    line-height: 1.5; /* Adjust line height for readability */
-    margin: 1rem 0; /* Adjust margins as needed */
-    padding-left: 1.5rem; /* Indent the list */
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
+.parapraph1 {
+  font-size: 1rem; /* Adjust font size as needed */
+  line-height: 1.5; /* Adjust line height for readability */
+  margin: 1rem 0; /* Adjust margins as needed */
+  padding-left: 1.5rem; /* Indent the list */
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
 }
-.parapraph1 > li{
-    list-style-type: none;
+.parapraph1 > li {
+  list-style-type: none;
 }
-.calculated{
-    margin: 0;
-    color: white;
-    text-align: left;
-    font-size: 40px;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
-}
-
-.quantities{
-        font-size: 1rem; 
-        line-height: 1.5; 
-        margin: 1rem 0; 
-        padding-left: 1.5rem; 
-        color: white;
-        font-family: Arial, Helvetica, sans-serif;
-        text-align: center;
-        list-style-type: none;
+.calculated {
+  margin: 0;
+  color: white;
+  text-align: left;
+  font-size: 40px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
 }
 
-.framework{
-    color: white;
-    text-align: left;
-    font-size: 40px;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
-    list-style-type: none;
+.quantities {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  list-style-type: none;
 }
-.orbitalelements{
-    font-size: 1rem; 
-    line-height: 1.5; 
-    margin: 1rem 0; 
-    padding-left: 1.5rem; 
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    list-style-type: none;
-    text-align: center;
-}
-.anomaly1{
-    margin: 0;
-    color: white;
-    text-align: left;
-    font-size: 40px;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
-    list-style-type: none;
-}
-.anomaly2{
-    font-size: 1rem; 
-    line-height: 1.5; 
-    margin: 1rem 0; 
-    padding-left: 1.5rem; 
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
-    list-style-type: none;
 
+.framework {
+  color: white;
+  text-align: left;
+  font-size: 40px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  list-style-type: none;
 }
-.radius1{
-    padding: 20px;
-    color: white;
-    text-align: left;
-    font-size: 40px;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
+.orbitalelements {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  list-style-type: none;
+  text-align: center;
 }
-.radius2{
-    text-align: center;
-    font-size: 20px; 
-    line-height: 1.5; 
-    margin: 1rem 0; 
-    padding-left: 1.5rem; 
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
+.anomaly1 {
+  margin: 0;
+  color: white;
+  text-align: left;
+  font-size: 40px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  list-style-type: none;
 }
-.heliocentric{
-    color: white;
-    text-align: left;
-    font-size: 40px;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
+.anomaly2 {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  list-style-type: none;
 }
-.helio{
-    text-align: center;
-    font-size: 20px; 
-    line-height: 1.5; 
-    margin: 1rem 0; 
-    padding: 30px;
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    list-style-type: none;
+.radius1 {
+  padding: 20px;
+  color: white;
+  text-align: left;
+  font-size: 40px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
 }
-.position{
-    color: white;
-    font-size: 40px;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
-    padding: 20px;
-
+.radius2 {
+  text-align: center;
+  font-size: 20px;
+  line-height: 1.5;
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
 }
-.pos{
-    font-size: 20px; 
-    line-height: 1.5; 
-    margin: 1rem 0; 
-    padding-left: 1.5rem; 
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
-    list-style-type: none;
+.heliocentric {
+  color: white;
+  text-align: left;
+  font-size: 40px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
 }
-.equa{
-    margin: 0;
-    color: white;
-    text-align: left;
-    font-size: 40px;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
-
+.helio {
+  text-align: center;
+  font-size: 20px;
+  line-height: 1.5;
+  margin: 1rem 0;
+  padding: 30px;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  list-style-type: none;
 }
-.equatorial{
-    text-align: center;
-    padding: 20px;
-    font-size: 20px; 
-    line-height: 1.5; 
-    margin: 1rem 0; 
-    padding-left: 1.5rem; 
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    list-style-type: none;
+.position {
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  padding: 20px;
 }
-.asteroids{
-    color: white;
-    font-size: 40px;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
-    padding: 20px;
-
+.pos {
+  font-size: 20px;
+  line-height: 1.5;
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  list-style-type: none;
 }
-.ast{
-    font-size: 20px; 
-    line-height: 1.5; 
-    margin: 1rem 0; 
-    padding: 20px;
-    padding-left: 1.5rem; 
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
-    list-style-type: none;
+.equa {
+  margin: 0;
+  color: white;
+  text-align: left;
+  font-size: 40px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
 }
-.comets{
-
-    color: white;
-    font-size: 40px;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
+.equatorial {
+  text-align: center;
+  padding: 20px;
+  font-size: 20px;
+  line-height: 1.5;
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  list-style-type: none;
 }
-.comet{
-    font-size: 20px; 
-    line-height: 1.5; 
-    margin: 1rem 0; 
-    padding-left: 1.5rem; 
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
-    list-style-type: none;
-    padding: 20px;
+.asteroids {
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  padding: 20px;
+}
+.ast {
+  font-size: 20px;
+  line-height: 1.5;
+  margin: 1rem 0;
+  padding: 20px;
+  padding-left: 1.5rem;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  list-style-type: none;
+}
+.comets {
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+.comet {
+  font-size: 20px;
+  line-height: 1.5;
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  list-style-type: none;
+  padding: 20px;
 }
 .centered-image {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 30%; /* Adjust the width as needed */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%; /* Adjust the width as needed */
 }
-.styled-image{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 60%; /* Adjust the width as needed */
+.styled-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%; /* Adjust the width as needed */
 }
-.formed-image{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 30%; /* Adjust the width as needed */
+.formed-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%; /* Adjust the width as needed */
 }
 
-.keplerianparameteres{
-    margin: 0;
-    color: rgba(255, 255, 255, 0.973);
-    text-align: center;
-    font-size: 3rem;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+.keplerianparameteres {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.973);
+  text-align: center;
+  font-size: 3rem;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
 }
-.parapraph1{
-        font-size: 1rem; /* Adjust font size as needed */
-        line-height: 1.5; /* Adjust line height for readability */
-        margin: 1rem 0; /* Adjust margins as needed */
-        padding-left: 1.5rem; /* Indent the list */
-        color: white;
-        font-family: Arial, Helvetica, sans-serif;
+.parapraph1 {
+  font-size: 1rem; /* Adjust font size as needed */
+  line-height: 1.5; /* Adjust line height for readability */
+  margin: 1rem 0; /* Adjust margins as needed */
+  padding-left: 1.5rem; /* Indent the list */
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
 }
-    

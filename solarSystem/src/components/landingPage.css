@@ -1,34 +1,33 @@
-.bg{
-    background-image: url('../assets/stars.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+.bg {
+  background-image: url("../assets/stars.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
-.title{
-    margin: 0;
-    color: white;
-    font-size: 60px;
-    text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
+.title {
+  margin: 0;
+  color: white;
+  font-size: 60px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
 }
-.begin-button{
-    background-color: rgba(86, 89, 233, 0.44);
-    color: white;
-    font-size: 60px;
-    padding: 10px;
-    border-radius: 20px;
-    position: absolute;
-    top: 60%;
+.begin-button {
+  background-color: rgba(86, 89, 233, 0.44);
+  color: white;
+  font-size: 60px;
+  padding: 10px;
+  border-radius: 20px;
+  position: absolute;
+  top: 60%;
 }
-.begin-button:hover{
-    background-color: rgba(86, 89, 233, 0.8);
-    cursor: pointer;
+.begin-button:hover {
+  background-color: rgba(86, 89, 233, 0.8);
+  cursor: pointer;
 }
-.earth-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 50px;
+.earth-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
 }
-

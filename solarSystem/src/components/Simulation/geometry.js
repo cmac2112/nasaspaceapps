@@ -65,11 +65,12 @@ export const createPlanetMeshes = () => {
     let moonMeshes;
     switch (planet.name) {
       case "Earth":
-        texture = textureLoader.load(ear),(texture) =>{
-          texture.generateMipmaps = false;
-          texture.minFilter = THREE.LinearFilter;
-          texture.magFilter = THREE.LinearFilter
-        };
+        (texture = textureLoader.load(ear)),
+          (texture) => {
+            texture.generateMipmaps = false;
+            texture.minFilter = THREE.LinearFilter;
+            texture.magFilter = THREE.LinearFilter;
+          };
         geometry = new THREE.SphereGeometry(25, 25, 25);
         material = new THREE.ShaderMaterial({
           vertexShader: document.getElementById("vertexshader").textContent,
@@ -117,7 +118,7 @@ export const createPlanetMeshes = () => {
           moonMesh.position.set(500, 0, 0); // Position the moon relative to Earth
           //simulation with moons is tough, they need to show but space is too large to show
           //true scale, so artifical moon distances are needed in order for moons to not be inside of planet mesh
-          earthGroup.add(moonMesh); 
+          earthGroup.add(moonMesh);
 
           return { moon, moonMesh };
         });
