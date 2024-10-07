@@ -2,7 +2,7 @@
   "name": "solarsystem",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://bcorrery.us",
+  "homepage": "https://cmac2112.github.io/nasaspaceapps/solareyes",
   "type": "module",
   "scripts": {
     "dev": "vite",

@@ -70,7 +70,11 @@ export const createPlanetMeshes = () => {
     let moonMeshes;
     switch (planet.name) {
       case "Earth":
-        texture = textureLoader.load(ear);
+        texture = textureLoader.load(ear),(texture) =>{
+          texture.generateMipmaps = false;
+          texture.minFilter = THREE.LinearFilter;
+          texture.magFilter = THREE.LinearFilter
+        };
         geometry = new THREE.SphereGeometry(25, 25, 25);
         material = new THREE.ShaderMaterial({
           vertexShader: document.getElementById("vertexshader").textContent,
@@ -232,7 +236,6 @@ export const createPlanetMeshes = () => {
         const venusGroup = new THREE.Group();
         venusGroup.add(mesh);
         venusGroup.add(venusSprite);
-        venusGroup.add(venusAtmosphere);
 
         moonMeshes = [];
 

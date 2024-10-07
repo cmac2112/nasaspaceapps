@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import Stats from "three/examples/jsm/libs/stats.module";
 import sunGenerator,{ createPlanetMeshes } from "./geometry";
 import calculatePosition, { calculateOrbitPoints, createOrbitLine} from "./orbitalCalculation";
 import { getObjects, getSecondObjects } from "./objects";
@@ -17,7 +16,7 @@ const SpaceSimulation = () => {
   let timeScale = 0.00001;
   const [dataReady, setDataReady] = useState(false);
   const [showOrbitLines, setShowOrbitLines] = useState(true);
-  let renderDistance = 5000;
+  let renderDistance = 4000;
   useEffect(() => {
     const fetchData = async () => {
       await getObjects();
@@ -42,7 +41,7 @@ const SpaceSimulation = () => {
       1,
       renderDistance
     );
-    cameraRef.current.position.set(0, 0, 2000); // Initialize camera position
+    cameraRef.current.position.set(0, 0, 300); // Initialize camera position
 
     const spotLight = new THREE.SpotLight(0xffffff);
     spotLight.position.set(0, 64, 32);
@@ -68,7 +67,7 @@ const SpaceSimulation = () => {
       const orbitPoints = calculateOrbitPoints(planet.a, planet.e, planet.I, planet.longNode, planet.longPeri);
       return createOrbitLine(orbitPoints);
     });
-    console.log(orbitLines);
+
     orbitLinesRef.current = orbitLines;
     
     if(showOrbitLines){
@@ -82,17 +81,11 @@ const SpaceSimulation = () => {
     }
     
     
-
-    // FPS stats
-    const stats = Stats();
-    document.body.appendChild(stats.dom);
-
     // Controls
     controls = new OrbitControls(cameraRef.current, renderer.domElement);
     controls.minDistance = 5;
     controls.maxDistance = 100000;
     const animate = () => {
-      stats.update();
       const now = Date.now() * timeScale;
 
       const scaledDistance = 1000; // Scale distance for better visibility
@@ -125,18 +118,6 @@ const SpaceSimulation = () => {
       cameraRef.current.updateProjectionMatrix();
     };
 
-
-    //gui intialization
-    const gui = new GUI();
-    const cameraFolder = gui.addFolder('Camera');
-    cameraFolder.domElement.querySelector('.title').style.fontSize = '12px';
-    cameraFolder.add(cameraRef.current.position, 'x', -10000, 10000);
-    cameraFolder.add(cameraRef.current.position, 'y', -10000, 10000);
-    cameraFolder.add(cameraRef.current.position, 'z', -10000, 10000);
-    cameraFolder.open();
-
-    
-
     // Function to set the camera position
     const setCameraPosition = () => {
       cameraRef.current.position.set(0, 0, 7000); // Set to desired position
@@ -149,7 +130,8 @@ const SpaceSimulation = () => {
     const IncreaseTimeScale = () => {
       timeScale = timeScale + 0.00001;
     }
-
+ //gui intialization
+ const gui = new GUI();
     const actionsFolder = gui.addFolder('Actions');
 actionsFolder.domElement.querySelector('.title').style.fontSize = '12px';
 actionsFolder.add({ setCameraPosition }, 'setCameraPosition').name('Reset Camera');
@@ -172,12 +154,7 @@ window.addEventListener("resize", resizeCanvas);
     
     return () => {
       window.removeEventListener("resize", resizeCanvas);
-
-      document.body.removeChild(stats.dom);
       gui.destroy()
-      controls.dispose();
-      renderer.dispose();
-      scene.dispose();
     };
   }, [dataReady]); // Ensure empty dependency array to run only once
   return (
