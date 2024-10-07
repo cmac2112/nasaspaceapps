@@ -4,7 +4,7 @@ import "./App.css";
 import InfoPage from "./components/InfoPage/InfoPage";
 import SpaceSimulation from "./components/Simulation/Simulation";
 import NotFound from "./components/NotFound/NotFound";
-import Aboutus from "./components/AboutUs/aboutus";
+import Aboutus from "./components/AboutUs/AboutUs";
 
 
 function App() {

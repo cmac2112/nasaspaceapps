@@ -3,10 +3,12 @@ import './AboutUs.css';
 import caden from "../../assets/caden.png"
 import meriem from "../../assets/meriem.png"
 import logo from "../../assets/logo.png"
- 
+import Layout from "../Layout/Layout";
 
 const Aboutus= () => {
     return (
+        <Layout>
+        <div className="bg">
         <div className="aboutus">
             <div className="content">
             </div>
@@ -28,7 +30,12 @@ const Aboutus= () => {
                     <h2>Caden McArthur</h2>
 
  <img src={caden} alt="caden" className="circular-image" />
-                    <p>Short biography for Name 1.</p>
+                    <p>Senior Computer Science major, Mathematics minor at Bethel College.</p>
+                    <p>Experience in developing for large companies, schools, and many personal projects.</p>
+                    <p>Currently working at Bethel as an Observatory Assistant and Software Developer</p>
+                    <a href="https://github.com/cmac2112">GitHub</a>
+                    <p>Connect with me on LinkedIn</p>
+                    <a href="https://www.linkedin.com/in/cadenmcarthur/">LinkedIn</a>
                 </div>
                 <div className="bio">
                     <h2>Meriem Dhouibi</h2>
@@ -40,6 +47,8 @@ Beyond that, Meriem is a violinist, finding solace and inspiration in the harmon
                 </div>
             </div>
         </div>
+        </div>
+        </Layout>
     );
 };
 

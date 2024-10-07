@@ -14,11 +14,6 @@ import { SimplexNoise } from "three/examples/jsm/math/SimplexNoise";
 
 export default async function sunGenerator() {
   // Create WebGL context
-  const canvas = document.createElement("canvas");
-  const gl = canvas.getContext("webgl2");
-
-  console.log(document.getElementById("vertexshader").textContent);
-
   const texture = new THREE.TextureLoader().load(sun);
 
   // Create ShaderMaterial using compiled GLSL shaders
@@ -121,8 +116,8 @@ export const createPlanetMeshes = () => {
           const moonMesh = new THREE.Mesh(moonGeometry, moonMaterial);
           moonMesh.position.set(500, 0, 0); // Position the moon relative to Earth
           //simulation with moons is tough, they need to show but space is too large to show
-          //true scale, so artifical moon distances need
-          earthGroup.add(moonMesh); // Add moon to the Earth group
+          //true scale, so artifical moon distances are needed in order for moons to not be inside of planet mesh
+          earthGroup.add(moonMesh); 
 
           return { moon, moonMesh };
         });
@@ -145,27 +140,6 @@ export const createPlanetMeshes = () => {
         marsGroup.add(mesh);
         marsGroup.add(marsSprite);
 
-        /*
-        geometry = new THREE.IcosahedronGeometry(5, 8);
-        const noise = new SimplexNoise();
-        const vertices = geometry.attributes.position.array;
-
-        //add random noise to make it look like a comet or meteor
-        for (let i = 0; i < vertices.length; i += 3) {
-          const x = vertices[i];
-          const y = vertices[i + 1];
-          const z = vertices[i + 2];
-          const offset = noise.noise3d(x * 0.1, y * 0.1, z * 0.1);
-          vertices[i] += offset * 2;
-          vertices[i + 1] += offset * 2;
-          vertices[i + 2] += offset * 2;
-        }
-
-        geometry.attributes.position.needsUpdate = true;
-        material = new THREE.MeshBasicMaterial({ map: texture });
-    }
-        */
-        // Create moon meshes for Mars
         moonMeshes = (planet.moons || []).map((moon) => {
           const moonTexture = textureLoader.load(meteormap);
           const moonGeometry = new THREE.IcosahedronGeometry(5.8);
@@ -258,8 +232,8 @@ export const createPlanetMeshes = () => {
 
         moonMeshes = (planet.moons || []).map((moon) => {
           const moonTexture = textureLoader.load(meteormap);
-          const moonGeometry = new THREE.SphereGeometry(10, 15, 15);
-          const moonMaterial = new THREE.MeshNormalMaterial({
+          const moonGeometry = new THREE.IcosahedronGeometry(10, 10);
+          const moonMaterial = new THREE.MeshStandardMaterial({
             map: moonTexture,
           });
           const moonMesh = new THREE.Mesh(moonGeometry, moonMaterial);
@@ -278,6 +252,8 @@ export const createPlanetMeshes = () => {
         texture = textureLoader.load(saturn);
         geometry = new THREE.SphereGeometry(45, 30, 30);
         material = new THREE.MeshBasicMaterial({ map: texture });
+        //too far away in the simulation to be cared about,
+        //like ive never even seen these following planets at all in here they are so far away
         break;
       case "Uranus":
         texture = textureLoader.load(uranus);
@@ -329,7 +305,7 @@ export const createPlanetMeshes = () => {
     mesh = new THREE.Mesh(geometry, material);
     mesh.rotation.x = Math.PI / 2;
 
-    // Create default moon meshes for each planet
+    // Create default moon meshes for each planet if not specified
     moonMeshes = (planet.moons || []).map((moon) => {
       const moonTexture = new THREE.TextureLoader().load(meteormap);
       const moonGeometry = new THREE.SphereGeometry(10, 13, 13);

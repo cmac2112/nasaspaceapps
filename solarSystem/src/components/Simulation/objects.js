@@ -208,8 +208,6 @@ export const getObjects = async () => {
 
   // Append the mapped data to the planets array
   planets.push(...mappedData);
-
-  console.log('Updated planets array 1:', planets);
 } catch (error) {
   console.error('Error fetching or processing data:', error);
 }
@@ -223,7 +221,7 @@ export const getSecondObjects = async () => {
 
     const filteredData = neoData.filter(item => item.orbit);
   
-    console.log('filtered data', filteredData)
+
     const mappedSatData = filteredData.map(item => ({
       name: item.sat.iau_name,
       a: parseFloat(item.orbit.a), // Semi-major axis
@@ -248,10 +246,7 @@ export const getSecondObjects = async () => {
     //filter out all null a values and delete the items
     // Append the mapped data to the planets array
     planets.push(...mappedSatData);
-    console.log('nea data', mappedNeaData)
     planets.push(...mappedNeaData)
-
-    console.log('Updated planets array 2:', planets);
   } catch (error) {
     console.error('Error fetching or processing data:', error);
   }

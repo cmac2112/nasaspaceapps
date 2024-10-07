@@ -16,7 +16,7 @@ const SpaceSimulation = () => {
   let timeScale = 0.00001;
   const [dataReady, setDataReady] = useState(false);
   const [showOrbitLines, setShowOrbitLines] = useState(true);
-  let renderDistance = 4000;
+  
   useEffect(() => {
     const fetchData = async () => {
       await getObjects();
@@ -28,9 +28,14 @@ const SpaceSimulation = () => {
 
   useEffect(() => {
     if (!dataReady) {
-      console.log("Data not ready");
       return
     }
+    const isMobile = window.innerWidth < 768;
+  const renderDistance = isMobile ? 1000: 4000;
+
+  if(isMobile){
+    alert("This simulation is not optimized for mobile. Please use a desktop for the best experience");
+  }
     const canvas = canvasRef.current;
     renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -41,7 +46,13 @@ const SpaceSimulation = () => {
       1,
       renderDistance
     );
-    cameraRef.current.position.set(0, 0, 300); // Initialize camera position
+    cameraRef.current.position.set(0, 0, 300);
+    renderer.domElement.addEventListener('webglcontextlost', (event) => {
+      event.preventDefault();
+      alert('WebGL context lost. Please reload the page to continue. If you are on moble, please use a desktop');
+      console.warn('WebGL context lost');
+    }, false);
+
 
     const spotLight = new THREE.SpotLight(0xffffff);
     spotLight.position.set(0, 64, 32);
@@ -119,10 +130,11 @@ const SpaceSimulation = () => {
     };
 
     // Function to set the camera position
+    //used in reset camera button on gui
     const setCameraPosition = () => {
-      cameraRef.current.position.set(0, 0, 7000); // Set to desired position
-      cameraRef.current.lookAt(new THREE.Vector3(0, 0, 0)); // Adjust if needed
-      controls.update(); // Update controls if using OrbitControls
+      cameraRef.current.position.set(0, 0, 200); 
+      cameraRef.current.lookAt(new THREE.Vector3(0, 0, 0)); 
+      controls.update();
     };
     const DecreaseTimeScale = () => {
       timeScale = timeScale - 0.00001;

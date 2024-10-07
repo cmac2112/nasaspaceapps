@@ -7,7 +7,7 @@ const Header = () => {
     // header component, should hold links to all the pages here
   return (
     <div className="header-container">
-        <h1 className="header-title">Near Earth Object Orrery</h1>
+        <h1 className="header-title">Solar Eye</h1>
         <nav className="navbar">
             <ul className="list">
             <li className='header-li'><Link to="/">Home</Link></li>

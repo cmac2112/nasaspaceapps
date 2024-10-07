@@ -1,9 +1,3 @@
-html, body{
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-}
 
 .simulation{
     width: 100%;
@@ -16,10 +10,13 @@ html, body{
 }
 .loading{
     position: absolute;
-    top: 50%;
+    top: 10%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 50px;
     color: white;
     font-family: Arial, Helvetica, sans-serif;
+}
+.dg.ac{
+    top: 10% !important;
 }

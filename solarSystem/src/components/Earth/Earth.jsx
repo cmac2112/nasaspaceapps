@@ -92,8 +92,6 @@ const Earth = () => {
 
     //raycasting
     raycaster.setFromCamera(mouse, cameraRef.current)
-    const intersects = raycaster.intersectObjects(scene.children)
-    console.log(intersects)
     const onMouseMove = (event) => {
         mouse.x = (event.clientX / canvasRef.current.clientWidth) * 2 - 1;
         mouse.y = -(event.clientY / canvasRef.current.clientHeight) * 2 + 1;
@@ -102,7 +100,6 @@ const Earth = () => {
         const intersects = raycaster.intersectObjects(scene.children);
         if (intersects.length > 0) {
           document.body.style.cursor = "pointer";
-          console.log(intersects[0].object)
           intersects[0].object.rotation.y += 0.01;
         }
       };
