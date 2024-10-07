@@ -175,6 +175,9 @@ window.addEventListener("resize", resizeCanvas);
 
       document.body.removeChild(stats.dom);
       gui.destroy()
+      controls.dispose();
+      renderer.dispose();
+      scene.dispose();
     };
   }, [dataReady]); // Ensure empty dependency array to run only once
   return (
