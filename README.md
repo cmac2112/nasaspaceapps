@@ -1,9 +1,5 @@
 # 🌌 Solar Eye: Exploring Near-Earth Objects & the Solar System
 
-<p align="center">
-  <img src="https://github.com/cmac2112/nasaspaceapps/raw/main/solarSystem/public/favicon.ico" width="96" alt="Solar Eye Logo">
-</p>
-
 > **Award-Winning Project at the 2024 NASA Space Apps Challenge**
 
 **Solar Eye** is an interactive, educational simulation that lets users visualize planetary orbits, Near-Earth Objects (NEOs), and orbital mechanics using real NASA/JPL data—all within your browser. Built by the Bethel College Software Club, this app translates complex astrophysical data into an accessible and visually captivating experience for learners, educators, and space enthusiasts.
